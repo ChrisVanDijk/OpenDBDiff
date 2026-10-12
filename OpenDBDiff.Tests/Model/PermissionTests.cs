@@ -143,11 +143,11 @@ namespace OpenDBDiff.Tests.Model.Tests
         public void IsPrincipalExcluded_UserWildcardFilter_ShouldExcludeMatchingUsersOnly()
         {
             Database database = CreateDatabase();
-            database.Options.Filters.Items.Add(new SqlOptionFilterItem(ObjectType.User, @"CONTOSO\*"));
+            database.Options.Filters.Items.Add(new SqlOptionFilterItem(ObjectType.User, "Temp*"));
 
-            Assert.IsTrue(GeneratePermissions.IsPrincipalExcluded(database, @"CONTOSO\user1", "U"));
+            Assert.IsTrue(GeneratePermissions.IsPrincipalExcluded(database, "TempUser1", "U"));
             Assert.IsFalse(GeneratePermissions.IsPrincipalExcluded(database, "AppUser", "S"));
-            Assert.IsFalse(GeneratePermissions.IsPrincipalExcluded(database, @"CONTOSO\role1", "R"));
+            Assert.IsFalse(GeneratePermissions.IsPrincipalExcluded(database, "TempRole1", "R"));
         }
 
         [TestMethod]
